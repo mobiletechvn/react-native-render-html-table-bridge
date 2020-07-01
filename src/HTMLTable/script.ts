@@ -15,6 +15,16 @@ const injectedScript = `
     }
   }
   postSize();
+
+
+  /**
+   * Fix the issue on android 5: container height was not updated
+   * https://github.com/jsamr/react-native-render-html-table-bridge/issues/16
+   */
+  setTimeout(() => postSize(), 5000);
+  setTimeout(() => postSize(), 10000);
+
+
   //trigger when DOM changes
   var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
   var observer = new MutationObserver(postSize);
